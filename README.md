@@ -20,6 +20,47 @@ localhost:8000/\_\_\_graphql
 \`query QueryName{}\` 이러면 유니크 해야함
 pagequery는 같은 파일 내, 컴포넌트 밖에 작성하면 props로 받아올 수 있다.
 
+## file-system
+
+`gatsby-source-filesystem` plugin을 통해 파일시스템에 접근 가능
+만약 `src/assets/images`에 접근하고 싶으면 아래와 같이 하면 됨
+
+```
+/* gatsby-conifg.js */
+plugins: [
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `images`,
+      path: `${__dirname}/src/assets/images`,
+    },
+  },
+],
+```
+
+`name`이 디렉토리 이름과 같을 필요 없음(graphql 쿼리 날릴때 sourceInstanceName속성으로 사용)
+아래는 graphql query 예시
+
+```
+/* query  */
+query {
+  allFile (
+
+    filter : {
+      sourceInstanceName : {eq: "images"}
+      // relativeDirectory: {eq: "recipes"}
+      }
+    sort: {fields: size, order: ASC}
+  ) {
+    totalCount
+    nodes {
+      name
+      size
+    }
+}
+
+```
+
 # TODO
 
 - tailwindCss
