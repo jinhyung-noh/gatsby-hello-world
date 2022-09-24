@@ -18,6 +18,7 @@ localhost:8000/\_\_\_graphql
 
 \`query {}\` 이렇게 작성 -> 안되는 경우 `gatsby clean`으로 캐시 비워줘야 함
 \`query QueryName{}\` 이러면 유니크 해야함
+pagequery는 같은 파일 내, 컴포넌트 밖에 작성하면 props로 받아올 수 있다.
 
 # TODO
 
