@@ -1,35 +1,37 @@
-import { graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import React from "react"
+import Layout from "../components/Layout"
+import Gallery from "../examples/gallery"
 
-const Testing = ({ data }) => {
-  const { author } = data.site.info
-  console.log(data)
+const Testing = () => {
+  const data = useStaticQuery(query)
+  console.log("data", data)
   return (
-    <div>
-      {" "}
-      <h2>author: {author}</h2>{" "}
-    </div>
+    <Layout>
+      <main className="page">
+        <Gallery></Gallery>
+      </main>
+    </Layout>
   )
 }
 
-export const data = graphql`
+export const query = graphql`
   query {
-    site {
-      info: siteMetadata {
-        title
-        description
-        author
-        person {
-          age
-          name
+    allFile(filter: { extension: { ne: "svg" } }) {
+      nodes {
+        name
+        childImageSharp {
+          id
+          gatsbyImageData(
+            layout: FIXED
+            placeholder: BLURRED
+            transformOptions: { grayscale: true }
+            width: 200
+          )
         }
-        complexData {
-          age
-          name
-        }
-        simpleData
       }
     }
   }
 `
+
 export default Testing

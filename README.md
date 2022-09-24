@@ -61,6 +61,19 @@ query {
 
 ```
 
+## image
+
+grqphql로 받아온 데이터를 `GatsbyImage` 컴포넌트에 넣어줄 수 있다
+`image` 프롭에 `gatsbyImageData`부분을 넣어주면 된다
+
+```
+<GatsbyImage
+  image={image.childImageSharp.gatsbyImageData}
+  alt={name}
+  className="gallery-img"
+></GatsbyImage>
+```
+
 # TODO
 
 - tailwindCss
