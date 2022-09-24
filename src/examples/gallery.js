@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 
@@ -14,7 +14,7 @@ const Gallery = () => {
         return (
           <article key={index} className="item">
             <GatsbyImage
-              image={image.childImageSharp.gatsbyImageData}
+              image={getImage(image)}
               alt={name}
               className="gallery-img"
             ></GatsbyImage>

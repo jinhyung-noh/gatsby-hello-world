@@ -65,6 +65,7 @@ query {
 
 grqphql로 받아온 데이터를 `GatsbyImage` 컴포넌트에 넣어줄 수 있다
 `image` 프롭에 `gatsbyImageData`부분을 넣어주면 된다
+`getImage(imageNode)`함수는 `gatsbyImageData`를 쉽게 가져오는 helper function
 
 ```
 <GatsbyImage
