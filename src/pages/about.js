@@ -1,9 +1,11 @@
 import React from "react"
 import Layout from "../components/Layout"
 import { StaticImage } from "gatsby-plugin-image"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
+import RecipesList from "../components/RecipesList"
 
-const About = () => {
+const About = ({ data }) => {
+  const recipes = data.allContentfulRecipe.nodes
   return (
     <Layout>
       <main className="page">
@@ -12,9 +14,7 @@ const About = () => {
             <h2>Elit ea fugiat labore laborum.</h2>
             <p>
               In nisi culpa sit mollit elit laboris ut reprehenderit fugiat
-              consequat irure nostrud. In proident eu nisi commodo elit. In id
-              sunt dolor amet eu nostrud. Et culpa irure commodo aliquip veniam
-              dolor dolore do irure est adipisicing magna et.
+              consequat irure nostrud.
             </p>
             <p>
               Cupidatat laboris velit irure et. Esse nostrud dolore adipisicing
@@ -32,9 +32,34 @@ const About = () => {
             placeholder="blurred"
           ></StaticImage>
         </section>
+        <section className="featured-recipes">
+          <h5>Look at his Awesome source!</h5>
+          <RecipesList recipes={recipes}></RecipesList>
+        </section>
       </main>
     </Layout>
   )
 }
+export const query = graphql`
+  query {
+    allContentfulRecipe(
+      sort: { fields: title, order: ASC }
+      filter: { featured: { eq: true } }
+    ) {
+      nodes {
+        id
+        cookTime
+        prepTime
+        content {
+          id
+        }
+        image {
+          gatsbyImageData
+        }
+        title
+      }
+    }
+  }
+`
 
 export default About
