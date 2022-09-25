@@ -7,6 +7,7 @@ const setupTags = recipes => {
     tags.forEach(tag => {
       if (allTags[tag]) {
         allTags[tag] += 1
+        return
       }
       allTags[tag] = 1
     })
