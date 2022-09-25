@@ -1,4 +1,6 @@
 const path = require("path")
+const slugify = require("slugify")
+
 /**
  * gatsby node로 동적 페이지 생성하려면 root 위치에 있어야 함
  * gatsby가 대신 해주는 것을 직접 해주는 과정: 데이터 받아 -> 페이지 생성
@@ -23,8 +25,9 @@ exports.createPages = async ({ graphql, actions }) => {
   result.data.allContentfulRecipe.nodes.forEach(recipe => {
     recipe.content.tags.forEach(tag => {
       // 페이지 생성시, 옵션을 직접 지정해주어야 함
+      const tagSlug = slugify(tag, { lower: true })
       createPage({
-        path: `/${tag}`,
+        path: `/tags/${tagSlug}`,
         component: path.resolve(`src/templates/tag-template.js`),
         context: {
           tag,
