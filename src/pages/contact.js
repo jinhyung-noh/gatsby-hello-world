@@ -29,7 +29,12 @@ const Contact = ({ data }) => {
             </p>
           </article>
           <article>
-            <form className="form contact-form">
+            <form
+              className="form contact-form"
+              /* formspree.io 에서 폼 입력 대신 받아줌 */
+              action="https://formspree.io/f/mqkjqbjy"
+              method="POST"
+            >
               <div className="form-row">
                 <label htmlFor="name">your name</label>
                 <input type="text" name="name" id="name"></input>
