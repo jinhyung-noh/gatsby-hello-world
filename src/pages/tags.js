@@ -11,8 +11,9 @@ const Tags = ({ data }) => {
         <section className="tags-page">
           {newTags.map((tag, idx) => {
             const [tagName, tagNum] = tag
+            const tagSlug = slugify(tagName)
             return (
-              <Link to={`/${tagName}`} key={idx} className="tag">
+              <Link to={`/tags/${tagSlug}`} key={idx} className="tag">
                 <h5>{tagName}</h5>
                 <p>{tagNum} recipe</p>
               </Link>

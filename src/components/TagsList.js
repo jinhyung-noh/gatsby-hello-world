@@ -15,7 +15,7 @@ const TagsList = ({ recipes }) => {
 
           return (
             <Link to={`/tags/${tagSlug}`} key={idx}>
-              {tagName} {tagNum}
+              {tagName} ({tagNum})
             </Link>
           )
         })}
